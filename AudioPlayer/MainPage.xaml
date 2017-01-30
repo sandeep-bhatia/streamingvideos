@@ -1,0 +1,63 @@
+<!-- 
+    Copyright (c) 2011 Microsoft Corporation.  All rights reserved.
+    Use of this sample source code is subject to the terms of the Microsoft license 
+    agreement under which you licensed this sample source code and is provided AS-IS.
+    If you did not accept the terms of the license agreement, you are not authorized 
+    to use this sample source code.  For the terms of the license, please see the 
+    license agreement between you and Microsoft.
+    
+    To see all Code Samples for Windows Phone, visit http://go.microsoft.com/fwlink/?LinkID=219604
+-->
+<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" 
+    x:Class="StreamPlayer.MainPage"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False" x:Name="AppBar">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.transport.rew.rest.png" Text="previous" Click="prevButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.transport.play.rest.png" Text="play" Click="playButton_Click"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.transport.pause.rest.png" Text="pause" Click="pauseButton_Click" IsEnabled="False"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar.transport.ff.rest.png" Text="next" Click="nextButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28"/>
+
+        <Grid x:Name="ContentPanel" Margin="12,0" Grid.Row="1" RenderTransformOrigin="0.488,0.564">
+            <TextBlock Height="45" HorizontalAlignment="Left" Margin="12,63,0,0" x:Name="txtTrack" Text="Track:" VerticalAlignment="Top" Width="438" FontSize="28" />
+            <ProgressBar HorizontalAlignment="Left" Margin="8,574,0,0" x:Name="positionIndicator" VerticalAlignment="Top" Width="438" Height="16"/>
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="0,611,0,0" x:Name="textPosition" Text="00:00:00" VerticalAlignment="Top" />
+            <TextBlock Height="30" HorizontalAlignment="Left" Margin="365,611,0,0" x:Name="textRemaining" Text="-00:00:00" VerticalAlignment="Top" />
+            <Button Content="Search" HorizontalAlignment="Left" Margin="345,-14,-9,0" VerticalAlignment="Top" Click="Search_Click"/>
+            <TextBox HorizontalAlignment="Left" Height="70" Margin="12,-12,0,0" TextWrapping="Wrap" x:Name="QueryText" Text="Karpura Gauram" VerticalAlignment="Top" Width="346"/>
+            <TextBlock x:Name="LoadingMessage" HorizontalAlignment="Left" Margin="21,533,0,0" TextWrapping="Wrap" Text="Loading Please Wait..." VerticalAlignment="Top" Height="36" Width="415"/>
+            <Image HorizontalAlignment="Left" x:Name="LoadingImage" Height="302" Margin="21,113,0,0" VerticalAlignment="Top" Width="313"/>
+            <Image HorizontalAlignment="Left" Source="LoadingWait.png" Name="loadingwait" Height="244" Margin="98,133,0,0" VerticalAlignment="Top" Width="248"/>
+            <Image HorizontalAlignment="Left" Source="BaseImage.jpg" Name="BaseImage" Height="230" Margin="69,133,0,0" VerticalAlignment="Top" Width="260"/>
+            <phone:LongListSelector SelectionChanged="Queue_SelectionChanged" HorizontalAlignment="Left" Height="456" Margin="334,113,0,0"  VerticalAlignment="Top" Width="116" FlowDirection="LeftToRight" Name="Queue" >
+            </phone:LongListSelector>
+            <Button Content="Cache Song" HorizontalAlignment="Left" Margin="12,420,0,0" VerticalAlignment="Top" Click="Cache_Click" Name="Cache"/>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>
